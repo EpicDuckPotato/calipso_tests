@@ -6,7 +6,7 @@ The dynamics constraint associated with a dynamical system can be computed by th
 
 Cost functions extend the StageCost struct in stage_cost.jl.
 
-The Transcription struct in transcription.jl takes the components of the above files and formulates the NLP associated with the trajectory optimization problem.
+The Transcription struct in transcription.jl takes the components of the above files and formulates the NLP associated with the trajectory optimization problem. It generates things like the sparsity structures of Jacobians and Hessians, the objective and constraint functions, etc.
 
 To run an acrobot swingup with no control limits, run include("./calipso_acrobot_no_cones.jl"). To run a snake swingup with no control limits, run include("./calipso_snake_no_cones.jl").
 
