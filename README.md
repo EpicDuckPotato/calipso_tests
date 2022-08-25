@@ -19,3 +19,5 @@ The snake swingup with control limits (i.e. with cones) crashes my laptop if I d
 The problem that I'm having is that when cone! is called on line 113 of https://github.com/thowell/CALIPSO.jl/blob/main/src/solver/solver.jl, there is an enormous delay between the call to the function and the first line in the function getting executed. In other words, if I add a print statement to line 112, of solver.jl, and add a print statement to line 78 of https://github.com/thowell/CALIPSO.jl/blob/main/src/solver/cones/cone.jl, there is a large delay between these prints. When I use an acrobot, the delay is finite, and the second print eventually gets executed. For the underwater snake robot I'm considering, the second print never executes, my computer starts slowing down, and I have to kill Julia externally.
 
 In summary, do you know why there would be a (potentially computer-crashing) delay between line 113 of solver.jl and line 79 of cone.jl? I'm able to solve problems without cones without any issue.
+
+You can trace through the cone code from lines 55-65 in calipso_acrobot.jl, or from line 72-82 of calipso_snake.jl.
