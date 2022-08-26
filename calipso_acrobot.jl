@@ -57,11 +57,11 @@ hw!(J, w, θ) = cone_jacobian!(transcription, J, w)
 hθ!(J, w, θ) = 0
 hw_sparsity = cone_jacobian_sparsity(transcription)
 hθ_sparsity = Vector{Tuple{Int64, Int64}}(undef, 0)
-hᵀy!(result, w, θ, y) = 0
-hᵀyw!(grad, w, θ, y) = 0
-hᵀyww!(H, w, θ, y) = 0
+hᵀy!(result, w, θ, y) = cone_dual!(transcription, result, w, y)
+hᵀyw!(grad, w, θ, y) = cone_dual_gradient!(transcription, grad, w, y)
+hᵀyww!(H, w, θ, y) = cone_dual_hessian!(transcription, H, w, y)
 hᵀywθ!(H, w, θ, y) = 0
-hᵀyww_sparsity = Vector{Tuple{Int64, Int64}}(undef, 0)
+hᵀyww_sparsity = cone_dual_hessian_sparsity(transcription)
 hᵀywθ_sparsity = Vector{Tuple{Int64, Int64}}(undef, 0)
 
 w0 = vcat([vcat(x0, zeros(system.nu)) for step=1:transcription.steps + 1]...)
